@@ -21,7 +21,7 @@
 }
 
 .begin-btn{
-    background: greenyellow;
+    background: #B6EADA;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -40,4 +40,21 @@
     transform: translate(-50%,0);
 
     cursor: pointer;
+}
+
+.begin-btn:hover {
+    background: #645CBB;
+}
+
+.begin-btn .open{
+    background: #E3F6FF;
+}
+
+.begin-btn.open{
+    background: #0b3244;
+    transform: translate(-50%,0) rotate(45deg);
+}
+
+.begin-btn.open:hover{
+    background: #66accc;
 }
