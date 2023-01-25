@@ -3,9 +3,22 @@ import { MdDone, MdDelete } from 'react-icons/md';
 import './css/TodoItem.css';
 import cn from 'classnames';
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, remove }) => {
 
-  const {title, done} = todo;  
+  const {id, title, done} = todo;  
+
+  // 서버에 삭제요청 클릭 이벤트핸들러
+  const deleteClickHandler = e => {
+    remove(id);
+  };
+
+  // 할 일 완료 수정 처리 이벤트 핸들러
+  const doneCheckHandler = e => {
+    // 서버쪽으로 현재 done 값의 반대 논리값을 전달하여 수정해야한다.
+  };
+
+
+
 
   return (
     <li className="todo-item">
@@ -13,7 +26,7 @@ const TodoItem = ({ todo }) => {
             {done && <MdDone />}
         </div>
         <span className={cn('text', {finish: done})}>{title}</span>
-        <div className="remove">
+        <div className="remove" onClick={deleteClickHandler}>
             <MdDelete />
         </div>
     </li>
