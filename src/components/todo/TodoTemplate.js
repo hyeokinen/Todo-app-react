@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 // css 로딩
 import './css/TodoTemplate.css';
@@ -8,38 +8,46 @@ import TodoMain from './TodoMain';
 
 const TodoTemplate = () => {
 
+  const API_BASE_URL = 'http://localhost:8080/api/todos';
 
-  // 할일 데이터
-  const todos = [
-    {
-      id:1,
-      title:'아침 산책',
-      done: true
-    },
-    {
-      id:2,
-      title:'점심 산책',
-      done: true
-    },
-    {
-      id:3,
-      title:'뉴스 읽기',
-      done: false
-    },
-    {
-      id:4,
-      title:'잠자기',
-      done: false
-    },
-  ]
+  // 할일 api데이터
+  const [todos, setTodos] = useState([]);
+
+  // 할 일 등록 서버 요청
+  const addTodo = (todo) => {
+
+    fetch(API_BASE_URL, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(todo)
+    })
+    .then(res => res.json())
+    .then(result => {
+        setTodos(result.todos);
+    });
+  };
+
+
+  // 렌더링되자마자 할 일 => todos api GET 목록 호출
+  useEffect(() => {
+
+    fetch(API_BASE_URL)
+        .then(res => res.json())
+        .then(result => {
+            // console.log(result.todos);
+            setTodos(result.todos);
+        });
+
+  }, []);
+
 
   return (
     <div className="todo-template">
-        <TodoHeader />
+        <TodoHeader todoList={todos} />
         <TodoMain todoList={todos} />
-        <TodoInput />
+        <TodoInput add={addTodo} />
     </div>
-  )
-}
+  );
+};
 
-export default TodoTemplate
+export default TodoTemplate;
