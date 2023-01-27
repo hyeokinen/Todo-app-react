@@ -7,9 +7,11 @@ import TodoHeader from './TodoHeader';
 import TodoInput from './TodoInput';
 import TodoMain from './TodoMain';
 
+import { BASE_URL, TODO } from '../../config/host-config';
+
 const TodoTemplate = () => {
 
-  const API_BASE_URL = 'http://localhost:8080/api/todos';
+  const API_BASE_URL = BASE_URL + TODO;
 
   // 할일 api데이터
   const [todos, setTodos] = useState([]);
@@ -66,6 +68,7 @@ const TodoTemplate = () => {
           if (res.status === 403) {
             alert('로그인이 필요한 서비스입니다!');
             // 리다이렉트
+            window.location.href = '/login';
             return;
           } else if (res.status === 500) {
             alert('서버가 불안정합니다 ㅈㅅ');
