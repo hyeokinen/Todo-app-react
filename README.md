@@ -2,7 +2,7 @@
 
 1. nodejs 설치
 2. create-react-app 설치 (최초1번)
-```
+``` 
 $ npm install -g create-react-app
 ```
 
