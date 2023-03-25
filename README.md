@@ -1,5 +1,6 @@
 # 리액트 프로젝트 시작하기
 
+
 1. nodejs 설치
 2. create-react-app 설치 (최초1번)
 ``` 
